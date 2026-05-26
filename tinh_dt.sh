@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Hiển thị thông báo và nhận dữ liệu nhập vào từ bàn phím
+# Hiển thị thông báo và nhận dữ liệu nhập vào
 read -p "Nhập bán kính hình tròn (r): " radius
 
 # Định nghĩa số Pi
 pi=3.1415926535
 
-# Sử dụng bc để tính toán diện tích (S = pi * r * r) với độ chính xác 2 chữ số thập phân
-dien_tich=$(echo "scale=2; $pi * $radius * $radius" | bc)
+# Sử dụng awk để tính toán thay thế cho bc
+dien_tich=$(awk "BEGIN {print $pi * $radius * $radius}")
 
-# In kết quả ra màn hình
-echo "Diện tích hình tròn có bán kính $radius là: $dien_tich"
+# In kết quả ra màn hình với 2 chữ số thập phân (định dạng %.2f)
+printf "Diện tích hình tròn có bán kính %s là: %.2f\n" "$radius" "$dien_tich"
